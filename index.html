@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vishnu Vardhan Saini | AI Engineer & Data Analyst</title>
+    <meta name="description" content="Portfolio of Vishnu Vardhan Saini, an aspiring AI Engineer and Data Analyst skilled in Python, machine learning, and data-driven problem solving.">
+    <meta name="keywords" content="Vishnu Vardhan Saini, AI Engineer, Data Analyst, Python, Machine Learning, Portfolio">
+    <meta name="author" content="Vishnu Vardhan Saini">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://example.com/">
+    <link rel="icon" type="image/png" href="file_000000009b8871fa8dfc30256654524e.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Vishnu Vardhan Saini | AI Engineer & Data Analyst">
+    <meta property="og:description" content="Explore projects, certifications, and skills in AI engineering, machine learning, and data analysis.">
+    <meta property="og:url" content="https://example.com/">
+    <meta property="og:site_name" content="Vishnu Vardhan Saini Portfolio">
+    <meta property="og:image" content="file_000000009b8871fa8dfc30256654524e.png">
+    <meta property="og:image:alt" content="Vishnu Vardhan Saini Portfolio Preview">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vishnu Vardhan Saini | AI Engineer & Data Analyst">
+    <meta name="twitter:description" content="Portfolio showcasing AI, machine learning, and data analytics projects by Vishnu Vardhan Saini.">
+    <meta name="twitter:image" content="file_000000009b8871fa8dfc30256654524e.png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Typed.js -->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .particle-canvas { position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100%; opacity: 0.4; pointer-events: none; }
+        .repo-card:hover .repo-overlay { opacity: 1; transform: translateY(0); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-white text-gray-900 leading-normal overflow-x-hidden">
+
+    <canvas id="particles" class="particle-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 text-2xl font-bold">
+                <div class="bg-gray-900 text-white p-1 rounded">
+                    <i data-lucide="brain-circuit" class="w-5 h-5"></i>
+                </div>
+                <span>Vishnu <span class="text-gray-600">Saini</span></span>
+            </div>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex gap-8 items-center">
+                <a href="#home" class="nav-link text-blue-700 font-medium text-sm transition-colors hover:text-orange-500 relative pb-1 border-b-2 border-blue-700">Home</a>
+                <a href="#about" class="nav-link text-gray-600 font-medium text-sm transition-colors hover:text-orange-500">About</a>
+                <a href="#skills" class="nav-link text-gray-600 font-medium text-sm transition-colors hover:text-orange-500">Skills</a>
+                <a href="#education" class="nav-link text-gray-600 font-medium text-sm transition-colors hover:text-orange-500">Education</a>
+                <a href="#resume" class="nav-link text-gray-600 font-medium text-sm transition-colors hover:text-orange-500">Resume</a>
+                <a href="#certifications" class="nav-link text-gray-600 font-medium text-sm transition-colors hover:text-orange-500">Certifications</a>
+                <a href="#work" class="nav-link text-gray-600 font-medium text-sm transition-colors hover:text-orange-500">Projects</a>
+                <a href="#contact" class="nav-link text-gray-600 font-medium text-sm transition-colors hover:text-orange-500">Contact</a>
+                <a href="https://drive.google.com/file/d/19vibKLRg_-QAyl9casXz00tHXSLWYcyl/view?usp=sharing" target="_blank" class="inline-flex items-center gap-2 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg font-bold text-sm hover:bg-gray-100 transition-colors">
+                    View Resume
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+            </div>
+
+            <button class="md:hidden p-2" id="menu-btn">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 p-6 flex flex-col gap-4">
+            <a href="#home" class="text-lg font-medium text-gray-700">Home</a>
+            <a href="#about" class="text-lg font-medium text-gray-700">About</a>
+            <a href="#skills" class="text-lg font-medium text-gray-700">Skills</a>
+            <a href="#education" class="text-lg font-medium text-gray-700">Education</a>
+            <a href="#resume" class="text-lg font-medium text-gray-700">Resume</a>
+            <a href="#certifications" class="text-lg font-medium text-gray-700">Certifications</a>
+            <a href="#work" class="text-lg font-medium text-gray-700">Projects</a>
+            <a href="#contact" class="text-lg font-medium text-gray-700">Contact</a>
+            <a href="https://drive.google.com/file/d/19vibKLRg_-QAyl9casXz00tHXSLWYcyl/view?usp=sharing" target="_blank" class="inline-flex items-center gap-2 border border-gray-300 text-gray-700 px-5 py-3 rounded-xl font-bold w-fit hover:bg-gray-100 transition-colors">
+                View Resume
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-6 min-h-[90vh] flex items-center justify-center">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4">
+                    Hi There,<br />
+                    I'm Vishnu <span class="text-orange-500">Saini</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-700 mb-8 h-8">
+                    I Am Into <span id="typing" class="text-orange-500 font-bold border-r-2 border-orange-500 pr-1"></span>
+                </p>
+                
+                <div class="flex flex-wrap items-center gap-4 mb-12">
+                    <a href="#about" class="inline-flex items-center gap-2 bg-[#000080] text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-blue-900/20 hover:bg-blue-900 transition-all hover:-translate-y-1">
+                        About Me <i data-lucide="chevron-down" class="w-5 h-5 animate-bounce"></i>
+                    </a>
+                    <a href="https://drive.google.com/file/d/19vibKLRg_-QAyl9casXz00tHXSLWYcyl/view?usp=sharing" target="_blank" class="inline-flex items-center gap-2 border border-gray-300 text-gray-700 px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all hover:-translate-y-1">
+                        View Resume <i data-lucide="external-link" class="w-5 h-5"></i>
+                    </a>
+                </div>
+
+                <div class="flex flex-col items-start gap-4 pt-4">
+                    <a href="https://www.linkedin.com/in/vishnu-vardhan-9aa8062a7" target="_blank" aria-label="LinkedIn" class="inline-flex items-center gap-3 text-gray-700 hover:text-[#0077b5] transition-all">
+                        <span class="inline-flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl hover:bg-[#0077b5]/10 transition-all">
+                        <span class="text-lg font-extrabold leading-none">in</span>
+                        </span>
+                        <span class="font-bold">Vishnu-Vardhan</span>
+                    </a>
+                    <a href="https://github.com/VishnuVardhan4518" target="_blank" aria-label="GitHub" class="inline-flex items-center gap-3 text-gray-700 hover:text-gray-900 transition-all">
+                        <span class="inline-flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl hover:bg-gray-200 transition-all">
+                        <span class="text-lg font-extrabold leading-none">&lt;/&gt;</span>
+                        </span>
+                        <span class="font-bold">VishnuVardhan4518</span>
+                    </a>
+                    <a href="mailto:vs9844607@gmail.com" aria-label="Email" class="inline-flex items-center gap-3 text-gray-700 hover:text-[#0088cc] transition-all">
+                        <span class="inline-flex items-center justify-center p-3 bg-gray-100 rounded-xl hover:bg-[#0088cc]/10 transition-all">
+                        <i data-lucide="mail" class="w-6 h-6"></i>
+                        </span>
+                        <span class="font-bold">vs9844607@gmail.com</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex justify-center md:justify-end">
+                <div class="relative w-72 h-72 md:w-[450px] md:h-[450px]">
+                    <div class="absolute inset-0 bg-yellow-400 rounded-full shadow-2xl overflow-hidden">
+                        <img src="file_000000009b8871fa8dfc30256654524e.png" alt="Vishnu Saini Illustration" class="relative z-10 w-full h-full object-cover object-center rounded-full contrast-110">
+                    </div>
+                    <div class="absolute bottom-10 left-0 bg-white p-4 rounded-2xl shadow-xl z-20 flex items-center gap-3 border border-gray-100">
+                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white">
+                            <i data-lucide="database" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-500 font-bold uppercase">Field</p>
+                            <p class="text-sm font-bold">AI & Data Analysis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="flex items-center gap-4 mb-12">
+            <h2 class="text-4xl font-bold">About Me</h2>
+            <div class="h-1 flex-1 bg-gray-100 rounded-full"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div class="space-y-6 text-lg text-gray-600 leading-relaxed">
+                <h3 class="text-2xl font-bold text-gray-900 leading-tight">Aspiring AI engineer skilled in Python, data analysis, and machine learning.</h3>
+                <p>I am passionate about solving real-world problems and continuous learning. My focus lies in building intelligent systems that can extract meaningful insights from data to drive decision-making.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Email</p>
+                        <p class="text-gray-900 font-bold">vs9844607@gmail.com</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Location</p>
+                        <p class="text-gray-900 font-bold">Vadodara, Gujarat</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 p-10 rounded-3xl border border-gray-100 space-y-8">
+                <div class="flex gap-6">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center shrink-0">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xl mb-1">Data-Driven</h4>
+                        <p class="text-gray-500">Transforming raw data into actionable business intelligence.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center shrink-0">
+                        <i data-lucide="cpu"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xl mb-1">AI Integrated</h4>
+                        <p class="text-gray-500">Leveraging ML models to automate and optimize processes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="skills" class="py-24 px-6 max-w-7xl mx-auto bg-gray-900 rounded-[3rem] my-12 text-white">
+        <h2 class="text-4xl font-bold text-center mb-16">Expertise</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+            <div class="flex flex-col items-center gap-4 group cursor-default">
+                <div class="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center group-hover:bg-yellow-500 transition-all duration-300 transform group-hover:-translate-y-2">
+                    <i data-lucide="code-2" class="w-10 h-10"></i>
+                </div>
+                <span class="font-bold text-sm tracking-wide text-center">Python</span>
+            </div>
+            <div class="flex flex-col items-center gap-4 group cursor-default">
+                <div class="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center group-hover:bg-blue-500 transition-all duration-300 transform group-hover:-translate-y-2">
+                    <i data-lucide="bar-chart-3" class="w-10 h-10"></i>
+                </div>
+                <span class="font-bold text-sm tracking-wide text-center">Data Analysis</span>
+            </div>
+            <div class="flex flex-col items-center gap-4 group cursor-default">
+                <div class="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center group-hover:bg-orange-500 transition-all duration-300 transform group-hover:-translate-y-2">
+                    <i data-lucide="brain" class="w-10 h-10"></i>
+                </div>
+                <span class="font-bold text-sm tracking-wide text-center">Machine Learning</span>
+            </div>
+            <div class="flex flex-col items-center gap-4 group cursor-default">
+                <div class="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center group-hover:bg-green-500 transition-all duration-300 transform group-hover:-translate-y-2">
+                    <i data-lucide="table" class="w-10 h-10"></i>
+                </div>
+                <span class="font-bold text-sm tracking-wide text-center">SQL & Pandas</span>
+            </div>
+            <div class="flex flex-col items-center gap-4 group cursor-default">
+                <div class="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center group-hover:bg-purple-500 transition-all duration-300 transform group-hover:-translate-y-2">
+                    <i data-lucide="line-chart" class="w-10 h-10"></i>
+                </div>
+                <span class="font-bold text-sm tracking-wide text-center">Matplotlib</span>
+            </div>
+            <div class="flex flex-col items-center gap-4 group cursor-default">
+                <div class="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center group-hover:bg-red-500 transition-all duration-300 transform group-hover:-translate-y-2">
+                    <i data-lucide="git-branch" class="w-10 h-10"></i>
+                </div>
+                <span class="font-bold text-sm tracking-wide text-center">Git</span>
+            </div>
+            <div class="flex flex-col items-center gap-4 group cursor-default">
+                <div class="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center group-hover:bg-sky-500 transition-all duration-300 transform group-hover:-translate-y-2">
+                    <i data-lucide="cloud" class="w-10 h-10"></i>
+                </div>
+                <span class="font-bold text-sm tracking-wide text-center">AWS</span>
+            </div>
+            <div class="flex flex-col items-center gap-4 group cursor-default">
+                <div class="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center group-hover:bg-cyan-500 transition-all duration-300 transform group-hover:-translate-y-2">
+                    <i data-lucide="container" class="w-10 h-10"></i>
+                </div>
+                <span class="font-bold text-sm tracking-wide text-center">Docker</span>
+            </div>
+            <div class="flex flex-col items-center gap-4 group cursor-default">
+                <div class="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center group-hover:bg-amber-500 transition-all duration-300 transform group-hover:-translate-y-2">
+                    <i data-lucide="flask-conical" class="w-10 h-10"></i>
+                </div>
+                <span class="font-bold text-sm tracking-wide text-center">Flask</span>
+            </div>
+            <div class="flex flex-col items-center gap-4 group cursor-default">
+                <div class="w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center group-hover:bg-orange-500 transition-all duration-300 transform group-hover:-translate-y-2">
+                    <i data-lucide="cpu" class="w-10 h-10"></i>
+                </div>
+                <span class="font-bold text-sm tracking-wide text-center">PyTorch</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="flex items-center gap-4 mb-12">
+            <h2 class="text-4xl font-bold">Education</h2>
+            <div class="h-1 flex-1 bg-gray-100 rounded-full"></div>
+        </div>
+        <div class="flex gap-8 group">
+            <div class="flex flex-col items-center">
+                <div class="w-12 h-12 bg-orange-50 rounded-full flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                    <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                </div>
+                <div class="w-0.5 flex-1 bg-gray-100 mt-4"></div>
+            </div>
+            <div class="pb-12">
+                <span class="text-xs font-bold text-orange-500 uppercase tracking-widest">2023 - 2027</span>
+                <h3 class="text-2xl font-bold mt-1 text-gray-900">B.Tech in computer Science - AI</h3>
+                <p class="text-gray-600 font-medium text-lg">Parul University</p>
+                <div class="mt-4 bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                    <p class="text-gray-700 leading-relaxed italic">Currently pursuing comprehensive studies in Artificial Intelligence, Deep Learning, and Data Science methodologies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="flex items-center gap-4 mb-12">
+            <h2 class="text-4xl font-bold">Resume</h2>
+            <div class="h-1 flex-1 bg-gray-100 rounded-full"></div>
+        </div>
+        <div class="bg-gray-50 border border-gray-100 rounded-3xl p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+                <h3 class="text-2xl font-bold text-gray-900">Vishnu Vardhan Saini - Resume</h3>
+                <p class="text-gray-600">View or download my latest resume.</p>
+            </div>
+            <a href="https://drive.google.com/file/d/19vibKLRg_-QAyl9casXz00tHXSLWYcyl/view?usp=sharing" target="_blank" class="inline-flex items-center justify-center gap-2 border border-gray-300 text-gray-700 px-6 py-3 rounded-xl font-bold hover:bg-gray-100 transition-colors">
+                Open Resume
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="flex items-center gap-4 mb-12">
+            <h2 class="text-4xl font-bold">Certifications</h2>
+            <div class="h-1 flex-1 bg-gray-100 rounded-full"></div>
+        </div>
+        <div class="bg-gray-50 border border-gray-100 rounded-3xl p-8">
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="https://drive.google.com/file/d/1-VHFLgXB6uBaX3pw2A5GWngQWDj1yKuh/view?usp=sharing" target="_blank" class="inline-flex items-center justify-center gap-2 bg-orange-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-orange-600 transition-colors">
+                    Python for Data Science & ML
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+                <a href="https://drive.google.com/file/d/1iazphipi20FR0NTK5d74MQOXepE7O9kB/view?usp=sharing" target="_blank" class="inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-xl font-bold hover:bg-gray-700 transition-colors">
+                    Gen Ai by Microsoft
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Projects -->
+    <section id="work" class="py-24 px-6 max-w-7xl mx-auto bg-gray-50/50 rounded-[3rem]">
+        <div class="flex items-center gap-4 mb-2">
+            <h2 class="text-4xl font-bold">GitHub Projects</h2>
+            <div class="h-1 flex-1 bg-gray-100 rounded-full"></div>
+        </div>
+        <div id="projects-loader" class="flex justify-center py-20">
+            <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-container"></div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <div>
+                <h2 class="text-5xl font-extrabold mb-6">Let's build something <span class="text-orange-500">together</span>.</h2>
+                <div class="space-y-8 mb-12">
+                    <div class="flex items-center gap-6 group">
+                        <div class="w-14 h-14 bg-gray-100 rounded-2xl flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-all"><i data-lucide="mail"></i></div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-400 uppercase">Mail me at</p>
+                            <p class="text-xl font-bold">vs9844607@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form class="space-y-6" action="https://formsubmit.co/vs9844607@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="New Portfolio Contact Message">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="index.html?message=sent#contact">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <input type="text" name="name" placeholder="Name" class="w-full bg-gray-50 border border-gray-200 p-5 rounded-2xl outline-none focus:border-orange-500 transition-colors" required>
+                    <input type="email" name="email" placeholder="Email" class="w-full bg-gray-50 border border-gray-200 p-5 rounded-2xl outline-none focus:border-orange-500 transition-colors" required>
+                    <input type="tel" name="phone" placeholder="Contact Number" class="w-full bg-gray-50 border border-gray-200 p-5 rounded-2xl outline-none focus:border-orange-500 transition-colors sm:col-span-2" required>
+                </div>
+                <textarea name="message" placeholder="Your Message..." rows="5" class="w-full bg-gray-50 border border-gray-200 p-5 rounded-2xl outline-none focus:border-orange-500 transition-colors resize-none" required></textarea>
+                <button class="w-full bg-orange-500 text-white font-bold py-5 rounded-2xl shadow-xl shadow-orange-500/20 hover:bg-orange-600 transition-all transform active:scale-95">Send Message</button>
+            </form>
+            <div id="contact-success" class="hidden mt-6 bg-green-50 border border-green-200 rounded-2xl p-5 text-center">
+                <p class="text-green-700 font-bold mb-3">Message sent successfully.</p>
+                <a href="#contact" class="inline-flex items-center justify-center bg-orange-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-orange-600 transition-colors">
+                    Return to Contact
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-gray-400 border-t border-gray-50">
+        <p>© 2024 Vishnu Vardhan Saini. All rights reserved.</p>
+    </footer>
+
+    <!-- Bottom Left Floating Avatar -->
+    <a href="#contact" class="fixed bottom-8 left-8 z-50 cursor-pointer group">
+        <div class="relative">
+            <!-- Adjusted with object-cover and background for consistent appearance -->
+            <img src="file_000000009b8871fa8dfc30256654524e.png" class="w-16 h-16 rounded-full border-4 border-white shadow-2xl animate-bounce object-cover bg-yellow-400">
+            <div class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 border-2 border-white rounded-full flex items-center justify-center text-[10px] text-white font-bold">1</div>
+        </div>
+        <div class="absolute bottom-full left-0 mb-6 w-56 bg-white p-4 rounded-2xl shadow-2xl border border-gray-100 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            <p class="text-sm font-bold mb-1">Hi, I'm Vishnu! 👋</p>
+            <p class="text-xs text-gray-500">I'm looking for a role as an AI Engineer. Let's talk!</p>
+        </div>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+
+        // Particles Background
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        class Particle {
+            constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.vx = (Math.random() - 0.5) * 0.6; this.vy = (Math.random() - 0.5) * 0.6; this.radius = 2; }
+            update() { this.x += this.vx; this.y += this.vy; if (this.x < 0 || this.x > canvas.width) this.vx *= -1; if (this.y < 0 || this.y > canvas.height) this.vy *= -1; }
+            draw() { ctx.fillStyle = '#000'; ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fill(); }
+        }
+        function init() { particles = []; for (let i = 0; i < 80; i++) particles.push(new Particle()); }
+        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
+        window.addEventListener('resize', resize);
+        resize(); init(); animate();
+
+        // Typewriter Effect
+        new Typed('#typing', { strings: ['AI Engineering', 'Data Analysis', 'Python Development', 'Machine Learning'], typeSpeed: 60, backSpeed: 40, loop: true });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        // Show in-page contact success message after FormSubmit redirect
+        const successBox = document.getElementById('contact-success');
+        const params = new URLSearchParams(window.location.search);
+        if (successBox && params.get('message') === 'sent') {
+            successBox.classList.remove('hidden');
+        }
+
+        // Fetch Projects from GitHub
+        async function fetchRepos() {
+            const container = document.getElementById('projects-container');
+            const loader = document.getElementById('projects-loader');
+            try {
+                const res = await fetch('https://api.github.com/users/VishnuVardhan4518/repos?sort=updated&per_page=6');
+                const repos = await res.json();
+                loader.style.display = 'none';
+                repos.forEach(repo => {
+                    if (repo.fork) return;
+                    const card = document.createElement('div');
+                    card.className = "repo-card group h-[300px] rounded-[2rem] overflow-hidden relative shadow-xl";
+                    card.innerHTML = `
+                        <img src="https://picsum.photos/seed/${repo.name}/800/600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gray-900/60 p-10 flex flex-col justify-end">
+                            <h3 class="text-2xl font-bold text-white mb-2 line-clamp-1">${repo.name.replace(/[-_]/g, ' ')}</h3>
+                            <a href="${repo.html_url}" target="_blank" class="text-white font-bold flex items-center gap-2">View Source <i data-lucide="github" class="w-4 h-4"></i></a>
+                        </div>`;
+                    container.appendChild(card);
+                });
+                lucide.createIcons();
+            } catch (e) { loader.innerText = "Check my GitHub for latest work."; }
+        }
+        fetchRepos();
+    </script>
+</body>
+</html>
