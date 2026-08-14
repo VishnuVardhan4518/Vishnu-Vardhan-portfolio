@@ -26,17 +26,307 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-- Typed.js -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .particle-canvas { position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100%; opacity: 0.4; pointer-events: none; }
+        :root {
+            --color-portrait-ink: #08304c;
+            --color-nautical-teal: #084e72;
+            --gradient-rainbow-spectrum: linear-gradient(90deg, #26c0ff, #e600c2 20%, #ff4940 40%, #ffa130 60%, #ffc837 80%, #00cc3d);
+            --color-charcoal-outline: #353535;
+            --color-graphite-body: #2c2c2c;
+            --color-slate-helper: #797979;
+            --color-ash-divider: #dedede;
+            --color-mist-hairline: #eeeeee;
+            --color-white-canvas: #ffffff;
+            --color-mint-wash: #d7ffe2;
+            --color-sky-wash: #e8f1ff;
+            --color-peach-wash: #ffebd6;
+            --font-switzer: 'Switzer', 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-basier-circle: 'Basier Circle', 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
+            --radius-nav: 28px;
+            --radius-cards: 24px;
+            --radius-inputs: 16px;
+            --radius-buttons: 28px;
+            --shadow-md: rgba(0, 0, 0, 0.03) 0px 16px 16px -8px, rgba(0, 0, 0, 0.03) 0px 10px 10px -5px, rgba(0, 0, 0, 0.03) 0px 5px 5px -2.5px, rgba(0, 0, 0, 0.03) 0px 3px 3px -1.5px, rgba(0, 0, 0, 0.03) 0px 2px 2px -1px, rgba(0, 0, 0, 0.03) 0px 1px 1px -0.5px;
+            --shadow-subtle: 0 0 0 1px rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.03) 0px 16px 16px -8px, rgba(0, 0, 0, 0.03) 0px 10px 10px -5px, rgba(0, 0, 0, 0.03) 0px 5px 5px -2.5px;
+        }
+
+        body {
+            font-family: var(--font-switzer);
+            background: var(--color-white-canvas);
+            color: var(--color-portrait-ink);
+            line-height: 1.5;
+            text-rendering: geometricPrecision;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-basier-circle);
+            color: var(--color-portrait-ink);
+            letter-spacing: -0.035em;
+        }
+
+        h1 {
+            line-height: 0.98 !important;
+            letter-spacing: -0.056em;
+        }
+
+        h2 {
+            line-height: 1.08 !important;
+        }
+
+        .particle-canvas { position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100%; opacity: 0.08; pointer-events: none; }
         .repo-card:hover .repo-overlay { opacity: 1; transform: translateY(0); }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+
+        nav {
+            top: 16px !important;
+            left: 16px !important;
+            right: 16px !important;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.94) !important;
+            border: 1px solid rgba(53, 53, 53, 0.08) !important;
+            border-radius: var(--radius-nav) !important;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-link {
+            color: var(--color-slate-helper) !important;
+            border-color: transparent !important;
+        }
+
+        .nav-link:hover,
+        .nav-link:first-child {
+            color: var(--color-portrait-ink) !important;
+            border-color: var(--color-portrait-ink) !important;
+        }
+
+        section {
+            scroll-margin-top: 96px;
+        }
+
+        p,
+        span,
+        a,
+        input,
+        textarea,
+        button {
+            letter-spacing: 0;
+        }
+
+        section > .flex .h-1,
+        section > div > .flex .h-1 {
+            height: 1px !important;
+            background: var(--color-ash-divider) !important;
+        }
+
+        .editorial-panel,
+        #about .bg-gray-50,
+        #resume .bg-gray-50,
+        #certifications .bg-gray-50,
+        #education .bg-gray-50 {
+            background: var(--color-white-canvas) !important;
+            border-color: rgba(53, 53, 53, 0.08) !important;
+            border-radius: var(--radius-cards) !important;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        #skills,
+        #work {
+            border-radius: var(--radius-cards) !important;
+        }
+
+        #skills {
+            background: var(--color-portrait-ink) !important;
+        }
+
+        #work {
+            background:
+                radial-gradient(circle at 18% 12%, rgba(255, 235, 214, 0.95), transparent 34%),
+                radial-gradient(circle at 82% 18%, rgba(215, 255, 226, 0.72), transparent 30%),
+                linear-gradient(135deg, #fff8f1 0%, #fff2e7 46%, #f7fbff 100%) !important;
+            border: 1px solid rgba(53, 53, 53, 0.08);
+            box-shadow: var(--shadow-subtle);
+        }
+
+        a[class*="bg-orange"],
+        button[class*="bg-orange"],
+        a[class*="bg-blue"],
+        a[class*="bg-emerald"],
+        a[class*="bg-gray-900"],
+        a[class*="bg-[#000080]"],
+        button[class*="bg-[#000080]"] {
+            position: relative;
+            background: var(--color-white-canvas) !important;
+            color: var(--color-portrait-ink) !important;
+            border: 1.5px solid transparent !important;
+            background-image: linear-gradient(var(--color-white-canvas), var(--color-white-canvas)), var(--gradient-rainbow-spectrum) !important;
+            background-origin: border-box !important;
+            background-clip: padding-box, border-box !important;
+            border-radius: var(--radius-buttons) !important;
+            box-shadow: none !important;
+        }
+
+        a[class*="bg-orange"]:hover,
+        button[class*="bg-orange"]:hover,
+        a[class*="bg-blue"]:hover,
+        a[class*="bg-emerald"]:hover,
+        a[class*="bg-gray-900"]:hover,
+        a[class*="bg-[#000080]"]:hover,
+        button[class*="bg-[#000080]"]:hover {
+            color: var(--color-nautical-teal) !important;
+            transform: translateY(-2px);
+        }
+
+        a[class*="border"],
+        button[class*="border"] {
+            border-color: rgba(53, 53, 53, 0.12) !important;
+            border-radius: var(--radius-buttons) !important;
+        }
+
+        a[class*="bg-orange"],
+        button[class*="bg-orange"],
+        a[class*="bg-blue"],
+        a[class*="bg-emerald"],
+        a[class*="bg-gray-900"],
+        a[class*="bg-[#000080]"],
+        button[class*="bg-[#000080]"] {
+            border-color: transparent !important;
+        }
+
+        .text-orange-500,
+        .text-blue-700,
+        .text-blue-600,
+        .text-orange-600,
+        .text-orange-500 {
+            color: var(--color-portrait-ink) !important;
+        }
+
+        .bg-orange-50,
+        .bg-blue-100,
+        .bg-orange-100,
+        .bg-gray-100 {
+            background: var(--color-sky-wash) !important;
+        }
+
+        input,
+        textarea {
+            background: var(--color-white-canvas) !important;
+            border-color: rgba(53, 53, 53, 0.12) !important;
+            border-radius: var(--radius-inputs) !important;
+            color: var(--color-portrait-ink) !important;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--color-portrait-ink) !important;
+            box-shadow: 0 0 0 4px rgba(232, 241, 255, 0.95);
+        }
+
+        #typing {
+            color: var(--color-portrait-ink) !important;
+            border-color: var(--color-portrait-ink) !important;
+        }
+
+        #home img,
+        .fixed img {
+            background: var(--color-peach-wash) !important;
+        }
+
+        #home img {
+            border-radius: var(--radius-cards) !important;
+        }
+
+        #home .bg-yellow-400 {
+            background: var(--color-peach-wash) !important;
+            border: 1px solid rgba(53, 53, 53, 0.08);
+            border-radius: var(--radius-cards) !important;
+            box-shadow: var(--shadow-subtle) !important;
+        }
+
+        #home .absolute.bottom-10,
+        .fixed .absolute.bottom-full {
+            background: rgba(255, 255, 255, 0.96) !important;
+            border-color: rgba(53, 53, 53, 0.08) !important;
+            border-radius: var(--radius-cards) !important;
+            box-shadow: var(--shadow-subtle) !important;
+        }
+
+        #skills .group > div {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-cards) !important;
+        }
+
+        #skills .group:hover > div {
+            background: var(--color-peach-wash) !important;
+            color: var(--color-portrait-ink) !important;
+        }
+
+        #certifications a {
+            border-radius: var(--radius-buttons) !important;
+        }
+
+        .repo-card {
+            border-radius: var(--radius-cards) !important;
+            background: rgba(255, 255, 255, 0.82) !important;
+            box-shadow: var(--shadow-subtle) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        #projects-loader > div {
+            border-color: var(--color-mist-hairline) !important;
+            border-top-color: var(--color-portrait-ink) !important;
+        }
+
+        .text-gray-400,
+        .text-gray-500,
+        .text-gray-600,
+        .text-gray-700 {
+            color: var(--color-slate-helper) !important;
+        }
+
+        .text-gray-900 {
+            color: var(--color-portrait-ink) !important;
+        }
+
+        .border-gray-50,
+        .border-gray-100,
+        .border-gray-200,
+        .border-gray-300 {
+            border-color: rgba(53, 53, 53, 0.1) !important;
+        }
+
+        #contact .text-orange-500 {
+            background: var(--gradient-rainbow-spectrum);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent !important;
+            font-style: italic;
+        }
+
+        #home h1 .text-orange-500 {
+            color: var(--color-portrait-ink) !important;
+            background: none !important;
+            font-style: normal;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                top: 8px !important;
+                left: 8px !important;
+                right: 8px !important;
+            }
+
+            h1 {
+                letter-spacing: -0.04em;
+            }
+        }
     </style>
 </head>
 <body class="bg-white text-gray-900 leading-normal overflow-x-hidden">
@@ -411,7 +701,7 @@
         class Particle {
             constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.vx = (Math.random() - 0.5) * 0.6; this.vy = (Math.random() - 0.5) * 0.6; this.radius = 2; }
             update() { this.x += this.vx; this.y += this.vy; if (this.x < 0 || this.x > canvas.width) this.vx *= -1; if (this.y < 0 || this.y > canvas.height) this.vy *= -1; }
-            draw() { ctx.fillStyle = '#000'; ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fill(); }
+            draw() { ctx.fillStyle = '#08304c'; ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fill(); }
         }
         function init() { particles = []; for (let i = 0; i < 80; i++) particles.push(new Particle()); }
         function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
@@ -444,13 +734,16 @@
                 repos.forEach(repo => {
                     if (repo.fork) return;
                     const card = document.createElement('div');
-                    card.className = "repo-card group h-[300px] rounded-[2rem] overflow-hidden relative shadow-xl";
+                    card.className = "repo-card group min-h-[260px] p-8 flex flex-col justify-between bg-white";
                     card.innerHTML = `
-                        <img src="https://picsum.photos/seed/${repo.name}/800/600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gray-900/60 p-10 flex flex-col justify-end">
-                            <h3 class="text-2xl font-bold text-white mb-2 line-clamp-1">${repo.name.replace(/[-_]/g, ' ')}</h3>
-                            <a href="${repo.html_url}" target="_blank" class="text-white font-bold flex items-center gap-2">View Source <i data-lucide="github" class="w-4 h-4"></i></a>
-                        </div>`;
+                        <div>
+                            <div class="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center mb-8">
+                                <i data-lucide="folder-git-2" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3 line-clamp-2">${repo.name.replace(/[-_]/g, ' ')}</h3>
+                            <p class="text-sm text-gray-500 line-clamp-3">${repo.description || 'GitHub repository by Vishnu Vardhan Saini.'}</p>
+                        </div>
+                        <a href="${repo.html_url}" target="_blank" class="mt-8 text-sm font-bold flex items-center gap-2">View Source <i data-lucide="github" class="w-4 h-4"></i></a>`;
                     container.appendChild(card);
                 });
                 lucide.createIcons();
