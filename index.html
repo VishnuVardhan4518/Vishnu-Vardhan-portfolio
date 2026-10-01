@@ -99,7 +99,7 @@
         }
 
         .nav-link:hover,
-        .nav-link:first-child {
+        .nav-link.is-active {
             color: var(--color-portrait-ink) !important;
             border-color: var(--color-portrait-ink) !important;
         }
@@ -309,6 +309,318 @@
             font-style: normal;
         }
 
+        /* Interactive motion */
+        .cursor-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            background: radial-gradient(circle, rgba(38, 192, 255, 0.09) 0%, rgba(232, 241, 255, 0.035) 34%, transparent 70%);
+            transform: translate3d(-50%, -50%, 0);
+            transition: opacity 240ms ease;
+            will-change: transform, opacity;
+        }
+
+        .cursor-glow.is-visible { opacity: 1; }
+
+        .hero-section {
+            --hero-background-x: 0px;
+            --hero-background-y: 0px;
+            --hero-text-x: 0px;
+            --hero-text-y: 0px;
+            --hero-portrait-x: 0px;
+            --hero-portrait-y: 0px;
+            overflow: hidden;
+        }
+
+        .hero-background-layer,
+        .hero-text-layer,
+        .hero-portrait-layer,
+        .hero-actions {
+            will-change: transform;
+        }
+
+        .hero-background-layer {
+            transform: translate3d(var(--hero-background-x), var(--hero-background-y), 0);
+        }
+
+        .hero-text-layer {
+            transform: translate3d(var(--hero-text-x), var(--hero-text-y), 0);
+            opacity: 0;
+            translate: 0 16px;
+            transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), translate 700ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .hero-portrait-layer {
+            transform: translate3d(var(--hero-portrait-x), var(--hero-portrait-y), 0);
+            opacity: 0;
+            translate: 0 20px;
+            transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1) 80ms, translate 800ms cubic-bezier(0.22, 1, 0.36, 1) 80ms;
+        }
+
+        .hero-section.is-loaded .hero-text-layer,
+        .hero-section.is-loaded .hero-portrait-layer {
+            opacity: 1;
+            translate: 0 0;
+        }
+
+        .hero-actions {
+            --hero-actions-x: 0px;
+            --hero-actions-y: 0px;
+            transform: translate3d(var(--hero-actions-x), var(--hero-actions-y), 0);
+        }
+
+        .magnetic-button {
+            --magnetic-x: 0px;
+            --magnetic-y: 0px;
+            transform: translate3d(var(--magnetic-x), var(--magnetic-y), 0) !important;
+            transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), color 180ms ease, background-color 180ms ease, box-shadow 180ms ease !important;
+        }
+
+        .magnetic-button:hover {
+            transform: translate3d(var(--magnetic-x), calc(var(--magnetic-y) - 2px), 0) scale(1.01) !important;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 180ms ease, transform 180ms ease !important;
+        }
+
+        .nav-link::after {
+            position: absolute;
+            right: 0;
+            bottom: -4px;
+            left: 0;
+            height: 1px;
+            content: '';
+            background: currentColor;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 220ms ease;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-1px);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.is-active::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        #skills .group {
+            transition: transform 220ms ease;
+        }
+
+        #skills .group:hover {
+            transform: translateY(-3px);
+        }
+
+        .repo-card {
+            --tilt-x: 0deg;
+            --tilt-y: 0deg;
+            transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(0);
+            transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 260ms ease !important;
+            will-change: transform;
+        }
+
+        .repo-card:hover {
+            transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(-5px);
+            box-shadow: 0 18px 36px -20px rgba(8, 48, 76, 0.34), var(--shadow-subtle) !important;
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 60;
+            width: 100%;
+            height: 3px;
+            pointer-events: none;
+            background: var(--gradient-rainbow-spectrum);
+            transform: scaleX(0);
+            transform-origin: left;
+            will-change: transform;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 720ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms), transform 720ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+        }
+
+        .scroll-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-heading .h-1 {
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1) 100ms;
+        }
+
+        .section-heading.is-visible .h-1 { transform: scaleX(1); }
+
+        .repo-card.scroll-reveal {
+            opacity: 0;
+            transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(28px);
+        }
+
+        .repo-card.scroll-reveal.is-visible {
+            opacity: 1;
+            transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(0);
+        }
+
+        .repo-card.scroll-reveal.is-visible:hover {
+            transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(-5px);
+        }
+
+        .repo-card > div > div,
+        .repo-card h3,
+        .repo-card > a {
+            transition: transform 220ms ease;
+        }
+
+        .repo-card:hover > div > div { transform: translateY(-2px); }
+        .repo-card:hover h3 { transform: translateY(-1px); }
+        .repo-card:hover > a { transform: translateX(2px); }
+
+        .hero-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 14px;
+            padding: 7px 11px;
+            border: 1px solid rgba(8, 48, 76, 0.12);
+            border-radius: 999px;
+            color: var(--color-slate-helper);
+            font-size: 0.75rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .hero-status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #00a83b;
+            animation: statusPulse 2.8s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 0.65; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.22); }
+        }
+
+        .copy-email-button {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            margin-left: 8px;
+            border: 1px solid rgba(53, 53, 53, 0.12);
+            border-radius: 50%;
+            color: var(--color-slate-helper);
+            transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
+        }
+
+        .copy-email-button:hover {
+            color: var(--color-portrait-ink);
+            border-color: rgba(8, 48, 76, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .copy-email-button::after {
+            position: absolute;
+            bottom: calc(100% + 7px);
+            left: 50%;
+            padding: 5px 7px;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 0.68rem;
+            font-weight: 700;
+            line-height: 1;
+            content: attr(data-copy-state);
+            background: var(--color-portrait-ink);
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, 4px);
+            transition: opacity 180ms ease, transform 180ms ease;
+        }
+
+        .copy-email-button.is-copied::after {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+
+        .floating-avatar > div:first-child {
+            animation: avatarFloat 3.6s ease-in-out infinite;
+        }
+
+        .floating-avatar img {
+            animation: none !important;
+            transition: transform 220ms ease;
+        }
+
+        .floating-avatar:hover img { transform: scale(1.04); }
+
+        .floating-avatar > div:last-child {
+            transform: translateY(6px);
+            transition: opacity 220ms ease, transform 220ms ease;
+        }
+
+        .floating-avatar:hover > div:last-child { transform: translateY(0); }
+
+        @keyframes avatarFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+            .cursor-glow { display: none; }
+            .hero-background-layer,
+            .hero-text-layer,
+            .hero-portrait-layer,
+            .hero-actions,
+            .magnetic-button,
+            .repo-card,
+            .repo-card:hover {
+                transform: none !important;
+                translate: 0 0 !important;
+            }
+
+            .hero-text-layer,
+            .hero-portrait-layer,
+            .scroll-reveal {
+                opacity: 1;
+                transition: none !important;
+            }
+
+            .scroll-reveal,
+            .repo-card.scroll-reveal,
+            .repo-card.scroll-reveal.is-visible,
+            .repo-card.scroll-reveal.is-visible:hover {
+                transform: none !important;
+            }
+
+            .section-heading .h-1 { transition: none; transform: none; }
+            .hero-status-dot,
+            .floating-avatar > div:first-child { animation: none; }
+        }
+
+        @media (max-width: 768px) {
+            .scroll-reveal { transform: translateY(15px); }
+        }
+
         @media (max-width: 768px) {
             nav {
                 top: 8px !important;
@@ -325,6 +637,8 @@
 <body class="bg-white text-gray-900 leading-normal overflow-x-hidden">
 
     <canvas id="particles" class="particle-canvas"></canvas>
+    <div class="cursor-glow" aria-hidden="true"></div>
+    <div class="scroll-progress" aria-hidden="true"></div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
@@ -359,14 +673,14 @@
 
         <!-- Mobile Nav -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 p-6 flex flex-col gap-4">
-            <a href="#home" class="text-lg font-medium text-gray-700">Home</a>
-            <a href="#about" class="text-lg font-medium text-gray-700">About</a>
-            <a href="#skills" class="text-lg font-medium text-gray-700">Skills</a>
-            <a href="#education" class="text-lg font-medium text-gray-700">Education</a>
-            <a href="#resume" class="text-lg font-medium text-gray-700">Resume</a>
-            <a href="#certifications" class="text-lg font-medium text-gray-700">Certifications</a>
-            <a href="#work" class="text-lg font-medium text-gray-700">Projects</a>
-            <a href="#contact" class="text-lg font-medium text-gray-700">Contact</a>
+            <a href="#home" class="nav-link text-lg font-medium text-gray-700">Home</a>
+            <a href="#about" class="nav-link text-lg font-medium text-gray-700">About</a>
+            <a href="#skills" class="nav-link text-lg font-medium text-gray-700">Skills</a>
+            <a href="#education" class="nav-link text-lg font-medium text-gray-700">Education</a>
+            <a href="#resume" class="nav-link text-lg font-medium text-gray-700">Resume</a>
+            <a href="#certifications" class="nav-link text-lg font-medium text-gray-700">Certifications</a>
+            <a href="#work" class="nav-link text-lg font-medium text-gray-700">Projects</a>
+            <a href="#contact" class="nav-link text-lg font-medium text-gray-700">Contact</a>
             <a href="https://drive.google.com/file/d/1NKtCTeBz93ZGWQ4htDi7j_iSQ-4Ff1FO/view?usp=sharing" target="_blank" class="inline-flex items-center gap-2 border border-gray-300 text-gray-700 px-5 py-3 rounded-xl font-bold w-fit hover:bg-gray-100 transition-colors">
                 View Resume
                 <i data-lucide="external-link" class="w-4 h-4"></i>
@@ -375,13 +689,17 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="pt-32 pb-20 px-6 min-h-[90vh] flex items-center justify-center">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
+    <section id="home" class="hero-section pt-32 pb-20 px-6 min-h-[90vh] flex items-center justify-center">
+        <div class="hero-background-layer max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="hero-text-layer">
                 <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4">
                     Hi, I'm Vishnu<br />
                     Vardhan <span class="text-orange-500">Saini</span>
                 </h1>
+                <div class="hero-status" aria-label="Focus area">
+                    <span class="hero-status-dot" aria-hidden="true"></span>
+                    Exploring AI &amp; data systems
+                </div>
                 <p class="text-xl md:text-2xl text-gray-700 mb-4 font-bold">
                     AI Engineer | Machine Learning | Data Science
                 </p>
@@ -389,11 +707,11 @@
                     I build intelligent systems using Machine Learning, Deep Learning and Data Analytics to solve real-world problems.
                 </p>
                 
-                <div class="flex flex-wrap items-center gap-4 mb-12">
-                    <a href="#about" class="inline-flex items-center gap-2 bg-[#000080] text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-blue-900/20 hover:bg-blue-900 transition-all hover:-translate-y-1">
+                <div class="hero-actions flex flex-wrap items-center gap-4 mb-12">
+                    <a href="#about" class="magnetic-button inline-flex items-center gap-2 bg-[#000080] text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-blue-900/20 hover:bg-blue-900 transition-all hover:-translate-y-1">
                         About Me <i data-lucide="chevron-down" class="w-5 h-5 animate-bounce"></i>
                     </a>
-                    <a href="https://drive.google.com/file/d/1NKtCTeBz93ZGWQ4htDi7j_iSQ-4Ff1FO/view?usp=sharing" target="_blank" class="inline-flex items-center gap-2 border border-gray-300 text-gray-700 px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all hover:-translate-y-1">
+                    <a href="https://drive.google.com/file/d/1NKtCTeBz93ZGWQ4htDi7j_iSQ-4Ff1FO/view?usp=sharing" target="_blank" class="magnetic-button inline-flex items-center gap-2 border border-gray-300 text-gray-700 px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all hover:-translate-y-1">
                         View Resume <i data-lucide="external-link" class="w-5 h-5"></i>
                     </a>
                 </div>
@@ -411,16 +729,21 @@
                         </span>
                         <span class="font-bold">VishnuVardhan4518</span>
                     </a>
-                    <a href="mailto:iamvishnu.ai@gmail.com" aria-label="Email" class="inline-flex items-center gap-3 text-gray-700 hover:text-[#0088cc] transition-all">
-                        <span class="inline-flex items-center justify-center p-3 bg-gray-100 rounded-xl hover:bg-[#0088cc]/10 transition-all">
-                        <i data-lucide="mail" class="w-6 h-6"></i>
-                        </span>
-                        <span class="font-bold">iamvishnu.ai@gmail.com</span>
-                    </a>
+                    <div class="inline-flex items-center">
+                        <a href="mailto:iamvishnu.ai@gmail.com" aria-label="Email" class="inline-flex items-center gap-3 text-gray-700 hover:text-[#0088cc] transition-all">
+                            <span class="inline-flex items-center justify-center p-3 bg-gray-100 rounded-xl hover:bg-[#0088cc]/10 transition-all">
+                            <i data-lucide="mail" class="w-6 h-6"></i>
+                            </span>
+                            <span class="font-bold">iamvishnu.ai@gmail.com</span>
+                        </a>
+                        <button type="button" class="copy-email-button" data-copy-email="iamvishnu.ai@gmail.com" data-copy-state="Copied!" aria-label="Copy email address">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <div class="flex justify-center md:justify-end">
+            <div class="hero-portrait-layer flex justify-center md:justify-end">
                 <div class="relative w-72 h-72 md:w-[450px] md:h-[450px]">
                     <img src="profile-editorial-background.png" alt="Vishnu Saini" class="w-full h-full object-cover object-center">
                 </div>
@@ -631,7 +954,12 @@
                         <div class="w-14 h-14 bg-gray-100 rounded-2xl flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition-all"><i data-lucide="mail"></i></div>
                         <div>
                             <p class="text-xs font-bold text-gray-400 uppercase">Mail me at</p>
-                            <p class="text-xl font-bold">iamvishnu.ai@gmail.com</p>
+                            <div class="flex items-center">
+                                <p class="text-xl font-bold">iamvishnu.ai@gmail.com</p>
+                                <button type="button" class="copy-email-button" data-copy-email="iamvishnu.ai@gmail.com" data-copy-state="Copied!" aria-label="Copy email address">
+                                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -662,7 +990,7 @@
     </footer>
 
     <!-- Bottom Left Floating Avatar -->
-    <a href="#contact" class="fixed bottom-8 left-8 z-50 cursor-pointer group">
+    <a href="#contact" class="floating-avatar fixed bottom-8 left-8 z-50 cursor-pointer group">
         <div class="relative">
             <!-- Adjusted with object-cover and background for consistent appearance -->
             <img src="Profile pic(3).png" class="w-16 h-16 rounded-full border-4 border-white shadow-2xl animate-bounce object-cover bg-yellow-400">
@@ -678,6 +1006,13 @@
     <script>
         lucide.createIcons();
 
+        const homeSection = document.getElementById('home');
+        const cursorGlow = document.querySelector('.cursor-glow');
+        const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const finePointerQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+        const motionEnabled = finePointerQuery.matches && !reducedMotionQuery.matches;
+        const pointerState = { x: window.innerWidth / 2, y: window.innerHeight / 2, inHero: false };
+
         // Particles Background
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
@@ -685,7 +1020,23 @@
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         class Particle {
             constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.vx = (Math.random() - 0.5) * 0.6; this.vy = (Math.random() - 0.5) * 0.6; this.radius = 2; }
-            update() { this.x += this.vx; this.y += this.vy; if (this.x < 0 || this.x > canvas.width) this.vx *= -1; if (this.y < 0 || this.y > canvas.height) this.vy *= -1; }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (motionEnabled && pointerState.inHero) {
+                    const dx = this.x - pointerState.x;
+                    const dy = this.y - pointerState.y;
+                    const distance = Math.hypot(dx, dy);
+                    const range = 110;
+                    if (distance > 0 && distance < range) {
+                        const force = ((range - distance) / range) * 0.55;
+                        this.x += (dx / distance) * force;
+                        this.y += (dy / distance) * force;
+                    }
+                }
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
             draw() { ctx.fillStyle = '#08304c'; ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fill(); }
         }
         function init() { particles = []; for (let i = 0; i < 80; i++) particles.push(new Particle()); }
@@ -704,6 +1055,209 @@
         if (successBox && params.get('message') === 'sent') {
             successBox.classList.remove('hidden');
         }
+
+        // Cursor Parallax, Cursor Glow, Magnetic Buttons, and Card Tilt
+        if (motionEnabled) {
+            const magneticButtons = Array.from(document.querySelectorAll('.magnetic-button')).map(button => ({ button, x: 0, y: 0, targetX: 0, targetY: 0 }));
+            let activeCard = null;
+            let cardTilt = { x: 0, y: 0, targetX: 0, targetY: 0 };
+            let targetParallaxX = 0;
+            let targetParallaxY = 0;
+            let currentParallaxX = 0;
+            let currentParallaxY = 0;
+            let currentGlowX = pointerState.x;
+            let currentGlowY = pointerState.y;
+
+            document.addEventListener('pointermove', event => {
+                pointerState.x = event.clientX;
+                pointerState.y = event.clientY;
+                const heroRect = homeSection.getBoundingClientRect();
+                pointerState.inHero = event.clientX >= heroRect.left && event.clientX <= heroRect.right && event.clientY >= heroRect.top && event.clientY <= heroRect.bottom;
+                targetParallaxX = pointerState.inHero ? ((event.clientX / window.innerWidth) - 0.5) * 2 : 0;
+                targetParallaxY = pointerState.inHero ? ((event.clientY / window.innerHeight) - 0.5) * 2 : 0;
+
+                magneticButtons.forEach(item => {
+                    const rect = item.button.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    const distance = Math.hypot(event.clientX - centerX, event.clientY - centerY);
+                    const influence = Math.max(rect.width, rect.height) * 0.95;
+                    if (pointerState.inHero && distance < influence) {
+                        item.targetX = ((event.clientX - centerX) / influence) * 5;
+                        item.targetY = ((event.clientY - centerY) / influence) * 5;
+                    } else {
+                        item.targetX = 0;
+                        item.targetY = 0;
+                    }
+                });
+
+                const card = event.target.closest('.repo-card');
+                if (card) {
+                    const rect = card.getBoundingClientRect();
+                    activeCard = card;
+                    cardTilt.targetY = ((event.clientX - rect.left) / rect.width - 0.5) * 4;
+                    cardTilt.targetX = -((event.clientY - rect.top) / rect.height - 0.5) * 4;
+                } else {
+                    activeCard = null;
+                    cardTilt.targetX = 0;
+                    cardTilt.targetY = 0;
+                }
+            }, { passive: true });
+
+            homeSection.addEventListener('pointerleave', () => {
+                pointerState.inHero = false;
+                targetParallaxX = 0;
+                targetParallaxY = 0;
+            });
+
+            window.addEventListener('blur', () => {
+                pointerState.inHero = false;
+                targetParallaxX = 0;
+                targetParallaxY = 0;
+            });
+
+            function animateInteractions() {
+                currentParallaxX += (targetParallaxX - currentParallaxX) * 0.08;
+                currentParallaxY += (targetParallaxY - currentParallaxY) * 0.08;
+                currentGlowX += (pointerState.x - currentGlowX) * 0.12;
+                currentGlowY += (pointerState.y - currentGlowY) * 0.12;
+
+                homeSection.style.setProperty('--hero-background-x', `${currentParallaxX * 3}px`);
+                homeSection.style.setProperty('--hero-background-y', `${currentParallaxY * 3}px`);
+                homeSection.style.setProperty('--hero-text-x', `${currentParallaxX * 5}px`);
+                homeSection.style.setProperty('--hero-text-y', `${currentParallaxY * 5}px`);
+                homeSection.style.setProperty('--hero-portrait-x', `${currentParallaxX * 14}px`);
+                homeSection.style.setProperty('--hero-portrait-y', `${currentParallaxY * 14}px`);
+                homeSection.style.setProperty('--hero-actions-x', `${currentParallaxX * 7}px`);
+                homeSection.style.setProperty('--hero-actions-y', `${currentParallaxY * 7}px`);
+
+                cursorGlow.style.transform = `translate3d(${currentGlowX}px, ${currentGlowY}px, 0) translate3d(-50%, -50%, 0)`;
+                cursorGlow.classList.toggle('is-visible', pointerState.inHero);
+
+                magneticButtons.forEach(item => {
+                    item.x += (item.targetX - item.x) * 0.14;
+                    item.y += (item.targetY - item.y) * 0.14;
+                    item.button.style.setProperty('--magnetic-x', `${item.x}px`);
+                    item.button.style.setProperty('--magnetic-y', `${item.y}px`);
+                });
+
+                document.querySelectorAll('.repo-card').forEach(card => {
+                    const targetX = card === activeCard ? cardTilt.targetX : 0;
+                    const targetY = card === activeCard ? cardTilt.targetY : 0;
+                    const currentX = Number(card.dataset.tiltX || 0) + (targetX - Number(card.dataset.tiltX || 0)) * 0.13;
+                    const currentY = Number(card.dataset.tiltY || 0) + (targetY - Number(card.dataset.tiltY || 0)) * 0.13;
+                    card.dataset.tiltX = currentX;
+                    card.dataset.tiltY = currentY;
+                    card.style.setProperty('--tilt-x', `${currentX}deg`);
+                    card.style.setProperty('--tilt-y', `${currentY}deg`);
+                });
+
+                requestAnimationFrame(animateInteractions);
+            }
+
+            requestAnimationFrame(animateInteractions);
+        }
+
+        // Scroll Reveal and Reduced Motion Support
+        let scrollRevealObserver = null;
+        const canReveal = !reducedMotionQuery.matches && 'IntersectionObserver' in window;
+
+        if (canReveal) {
+            scrollRevealObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('is-visible');
+                    scrollRevealObserver.unobserve(entry.target);
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+        }
+
+        function registerScrollReveal(element, delay = 0) {
+            if (!element || element.classList.contains('scroll-reveal')) return;
+            element.classList.add('scroll-reveal');
+            element.style.setProperty('--reveal-delay', `${delay}ms`);
+            if (canReveal) {
+                scrollRevealObserver.observe(element);
+            } else {
+                element.classList.add('is-visible');
+            }
+        }
+
+        const revealTargets = {
+            about: [':scope > .flex', ':scope > .grid > *'],
+            skills: [':scope > h2', ':scope > .grid > .group'],
+            education: [':scope > .flex', ':scope > .group'],
+            resume: [':scope > .flex', ':scope > .bg-gray-50'],
+            certifications: [':scope > .flex', ':scope > .bg-gray-50'],
+            work: [':scope > .flex', ':scope > #projects-loader'],
+            contact: [':scope > .grid > *']
+        };
+
+        Object.entries(revealTargets).forEach(([sectionId, selectors]) => {
+            const section = document.getElementById(sectionId);
+            if (!section) return;
+            const items = selectors.flatMap(selector => Array.from(section.querySelectorAll(selector)));
+            [...new Set(items)].forEach((item, index) => {
+                if (item.querySelector('h2') && item.querySelector('.h-1')) item.classList.add('section-heading');
+                registerScrollReveal(item, Math.min(index * 70, 350));
+            });
+        });
+
+        // Scroll Progress and Active Navigation
+        const scrollProgress = document.querySelector('.scroll-progress');
+        let progressFrame = null;
+        function updateScrollProgress() {
+            const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
+            scrollProgress.style.transform = `scaleX(${Math.min(Math.max(progress, 0), 1)})`;
+            progressFrame = null;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (progressFrame === null) progressFrame = requestAnimationFrame(updateScrollProgress);
+        }, { passive: true });
+        updateScrollProgress();
+
+        const navLinks = Array.from(document.querySelectorAll('nav a[href^="#"]'));
+        function setActiveNav(sectionId) {
+            navLinks.forEach(link => link.classList.toggle('is-active', link.getAttribute('href') === `#${sectionId}`));
+        }
+
+        setActiveNav('home');
+        if ('IntersectionObserver' in window) {
+            const navObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) setActiveNav(entry.target.id);
+                });
+            }, { rootMargin: '-28% 0px -58% 0px', threshold: 0 });
+            ['home', 'about', 'skills', 'education', 'resume', 'certifications', 'work', 'contact']
+                .map(id => document.getElementById(id))
+                .filter(Boolean)
+                .forEach(section => navObserver.observe(section));
+        }
+
+        // Copy Email
+        document.addEventListener('click', async event => {
+            const copyButton = event.target.closest('[data-copy-email]');
+            if (!copyButton) return;
+            const email = copyButton.dataset.copyEmail;
+            try {
+                await navigator.clipboard.writeText(email);
+            } catch (error) {
+                const temporaryInput = document.createElement('textarea');
+                temporaryInput.value = email;
+                temporaryInput.style.position = 'fixed';
+                temporaryInput.style.opacity = '0';
+                document.body.appendChild(temporaryInput);
+                temporaryInput.select();
+                document.execCommand('copy');
+                temporaryInput.remove();
+            }
+            copyButton.classList.add('is-copied');
+            window.setTimeout(() => copyButton.classList.remove('is-copied'), 1400);
+        });
+
+        requestAnimationFrame(() => homeSection.classList.add('is-loaded'));
 
         // Fetch Projects from GitHub
         async function fetchRepos() {
@@ -727,6 +1281,7 @@
                         </div>
                         <a href="${repo.html_url}" target="_blank" class="mt-8 text-sm font-bold flex items-center gap-2">View Source <i data-lucide="github" class="w-4 h-4"></i></a>`;
                     container.appendChild(card);
+                    registerScrollReveal(card, Math.min(container.children.length * 70, 350));
                 });
                 lucide.createIcons();
             } catch (e) { loader.innerText = "Check my GitHub for latest work."; }
